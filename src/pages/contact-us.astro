@@ -1,0 +1,116 @@
+---
+// Contact Us. Reuses the About Us page sections and styles (elementor-2312) so it matches the site.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/elementor/elementor-post-2312.css';
+
+// SAMPLE contact details: replace with the real ones before launch.
+const contact = {
+  phone: '+1 (555) 010-0123',
+  phoneHref: 'tel:+15550100123',
+  email: 'hello@audiobookspeedcalculator.org',
+  address: ['100 Sample Street, Suite 200', 'Austin, TX 78701, United States'],
+  hours: 'Mon–Fri, 9:00 am – 5:00 pm (CT)',
+};
+const mapHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contact.address.join(', '))}`;
+
+const seo = {
+  title: 'Contact Us - Audiobook Speed Calculator',
+  description: 'Get in touch with the Audiobook Speed Calculator team. Call, email or write to us with questions, feedback or calculator suggestions.',
+  ogType: 'website',
+  ogImage: '/images/new-ss.webp',
+};
+
+const cards = [
+  {
+    // Card containers/widgets reuse the About page element classes for identical styling.
+    con: '42dd838',
+    widget: 'e247b82',
+    title: 'Phone',
+    value: contact.phone,
+    href: contact.phoneHref,
+    note: contact.hours,
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" width="36" height="36"><path fill="#00D4FF" d="M31.4 25.2l-4.6-3.1a3 3 0 0 0-3.9.5l-1.5 1.7a21 21 0 0 1-9.7-9.7l1.7-1.5a3 3 0 0 0 .5-3.9L10.8 4.6A3 3 0 0 0 6.6 3.8L3.8 5.8C2.3 6.9 1.6 8.8 2.1 10.6 5 21.9 14.1 31 25.4 33.9c1.8.5 3.7-.2 4.8-1.7l2-2.8a3 3 0 0 0-.8-4.2z"/></svg>',
+  },
+  {
+    con: '20c74ef',
+    widget: '5012825',
+    title: 'Email',
+    value: contact.email,
+    href: `mailto:${contact.email}`,
+    note: 'We reply within 1–2 business days.',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" width="36" height="36"><rect x="2" y="7" width="32" height="22" rx="3" fill="#00D4FF"/><path fill="#0D1117" d="M4.5 9.5 18 20 31.5 9.5v2.6L18 22.6 4.5 12.1z"/></svg>',
+  },
+  {
+    con: 'a76a20d',
+    widget: '3743ccc',
+    title: 'Address',
+    value: contact.address.join(', '),
+    href: mapHref,
+    note: 'Visits by appointment only.',
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" width="36" height="36"><path fill="#00D4FF" d="M18 2C11.4 2 6 7.3 6 13.9 6 23 18 34 18 34s12-11 12-20.1C30 7.3 24.6 2 18 2z"/><circle cx="18" cy="14" r="4.5" fill="#0D1117"/></svg>',
+  },
+];
+
+const bodyClass =
+  'wp-singular page-template page-template-elementor_header_footer page wp-embed-responsive wp-theme-hello-elementor hello-elementor-default elementor-default elementor-template-full-width elementor-kit-6 elementor-page elementor-page-2312';
+---
+<BaseLayout seo={seo} bodyClass={bodyClass}>
+  <div data-elementor-type="wp-page" class="elementor elementor-2312 contact-page">
+    <div class="elementor-element elementor-element-f4f5317 e-flex e-con-boxed e-con e-parent">
+      <div class="e-con-inner">
+        <div class="elementor-element elementor-element-63ff045 elementor-widget elementor-widget-heading">
+          <h1 class="elementor-heading-title elementor-size-default">Contact Us</h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="elementor-element elementor-element-1507516 e-flex e-con-boxed e-con e-parent">
+      <div class="e-con-inner">
+        <div class="elementor-element elementor-element-2a90c35 elementor-widget elementor-widget-heading">
+          <p class="elementor-heading-title elementor-size-default">Get in Touch</p>
+        </div>
+        <div class="elementor-element elementor-element-f1fea19 elementor-widget elementor-widget-heading">
+          <h2 class="elementor-heading-title elementor-size-default">We’d love to hear from you</h2>
+        </div>
+        <div class="elementor-element elementor-element-5b065f1 elementor-widget__width-initial elementor-widget-mobile__width-inherit elementor-widget elementor-widget-text-editor">
+          <p>Questions about the audiobook speed calculator, a feature idea, or a book length we should add? Reach us by phone, email or post, and we’ll get back to you.</p>
+        </div>
+        <div class="elementor-element elementor-element-d5ce1d6 e-grid e-con-full e-con e-child">
+          {cards.map((c) => (
+            <div class={`elementor-element elementor-element-${c.con} e-con-full e-flex e-con e-child`}>
+              <div class={`elementor-element elementor-element-${c.widget} elementor-view-stacked elementor-shape-rounded elementor-position-block-start elementor-mobile-position-block-start elementor-widget elementor-widget-icon-box`}>
+                <div class="elementor-icon-box-wrapper">
+                  <div class="elementor-icon-box-icon">
+                    <span class="elementor-icon" set:html={c.icon} />
+                  </div>
+                  <div class="elementor-icon-box-content">
+                    <h3 class="elementor-icon-box-title">
+                      <span>{c.title}</span>
+                    </h3>
+                    <p class="elementor-icon-box-description">
+                      <a class="contact-value" href={c.href} target={c.href.startsWith('http') ? '_blank' : undefined} rel={c.href.startsWith('http') ? 'noopener' : undefined}>{c.value}</a>
+                      <br />
+                      {c.note}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .contact-value {
+    color: var(--e-global-color-aca82d1);
+    font-size: 15px;
+    font-weight: 600;
+    word-break: break-word;
+  }
+  .contact-value:hover {
+    color: #fff;
+  }
+</style>

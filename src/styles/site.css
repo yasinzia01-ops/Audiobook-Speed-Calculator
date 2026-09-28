@@ -17,3 +17,53 @@
   display: block;
   scroll-margin-top: 20px;
 }
+
+/* Header "Contact Us" button: same style as the site's primary button
+   (e.g. "Open the Calculator" on the Speed Chart page). */
+.elementor-14 .header-cta {
+  margin-inline-start: auto;
+  padding-inline-start: 16px;
+  flex-shrink: 0;
+}
+.elementor-14 .header-cta .elementor-button {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: var(--e-global-color-aca82d1);
+  color: var(--e-global-color-text);
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5em;
+  border-radius: 10px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.3s;
+}
+.elementor-14 .header-cta .elementor-button:hover,
+.elementor-14 .header-cta .elementor-button:focus-visible {
+  background-color: #ffffff;
+  color: var(--e-global-color-text);
+}
+@media (max-width: 1024px) {
+  /* Menu collapses to a hamburger: keep the button just left of it. */
+  .elementor-14 .elementor-element-cd7f033 {
+    flex-wrap: nowrap;
+  }
+  .elementor-14 .header-cta {
+    order: -1;
+    padding-inline-end: 12px;
+  }
+  .elementor-14 .elementor-element-cd7f033 > .elementor-widget-n-menu {
+    flex: 0 0 auto;
+    width: auto;
+  }
+}
+@media (max-width: 767px) {
+  .elementor-14 .header-cta {
+    padding-inline-start: 8px;
+  }
+  .elementor-14 .header-cta .elementor-button {
+    font-size: 14px;
+    padding: 9px 16px;
+  }
+}

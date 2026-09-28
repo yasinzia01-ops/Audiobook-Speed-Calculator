@@ -53,7 +53,7 @@ The narrator IS part of a fiction audiobook. Their pacing, accent work, characte
 
 ## What is the best speed for Audible audiobooks?
 
-<div class="abc-answer"><span class="aa-label">Direct Answer</span><p>1.5x–2x is the best speed for Audible audiobooks. <a href="https://help.audible.com/s/article/how-do-i-use-the-variable-speed-feature" target="_blank" rel="noopener noreferrer">Audible supports 0.5x to 3.5x in 0.05x increments</a> - the widest range of any major platform. The average Audible listener uses 1.65x speed. Non-fiction Audible listeners average 1.8x. Whispersync works at all speeds.</p></div>
+<div class="abc-answer"><span class="aa-label">Direct Answer</span><p>1.5x–2x is the best speed for Audible audiobooks. <a href="https://help.audible.com/s/article/set-narration-speed?language=en_US" target="_blank" rel="noopener noreferrer">Audible supports 0.5x to 3.5x in 0.05x increments</a> - the widest range of any major platform. The average Audible listener uses 1.65x speed. Non-fiction Audible listeners average 1.8x. Whispersync works at all speeds.</p></div>
 
 ## What is the best speed for Libby audiobooks?
 
