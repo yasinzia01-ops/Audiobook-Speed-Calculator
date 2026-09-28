@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostGrid from '../components/PostGrid.astro';
+import '../styles/elementor/elementor-post-2298.css';
+
+const seo = {
+  "title": "Blog - Audiobook Speed Calculator",
+  "ogType": "article",
+  "modified": "2026-09-28T11:24:26+00:00",
+  "twitter": [
+    [
+      "twitter:label1",
+      "Est. reading time"
+    ],
+    [
+      "twitter:data1",
+      "3 minutes"
+    ]
+  ]
+};
+---
+<BaseLayout seo={seo} bodyClass="wp-singular page-template page-template-elementor_header_footer page page-id-2298 wp-embed-responsive wp-theme-hello-elementor wp-schema-pro-2.11.4 hello-elementor-default elementor-default elementor-template-full-width elementor-kit-6 elementor-page elementor-page-2298 elementor-page-17">
+<div data-elementor-type="wp-page" data-elementor-id="2298" class="elementor elementor-2298">
+        <div class="elementor-element elementor-element-eeec576 e-flex e-con-boxed e-con e-parent">
+          <div class="e-con-inner">
+        <div class="elementor-element elementor-element-3058fac elementor-widget elementor-widget-heading">
+          <h2 class="elementor-heading-title elementor-size-default">Blog</h2>        </div>
+          </div>
+        </div>
+    <div class="elementor-element elementor-element-7d150b5 e-flex e-con-boxed e-con e-parent">
+          <div class="e-con-inner">
+    <div class="elementor-element elementor-element-295fea4 e-con-full e-flex e-con e-child">
+        <PostGrid elementClass="elementor-element-1f26944" />
+        </div>
+          </div>
+        </div>
+        </div>
+</BaseLayout>

@@ -1,0 +1,332 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "astro",
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/audiobook-speed-calculator/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/home/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/feed/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/comments/feed/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/:slug/feed/",
+      "destination": "/:slug/",
+      "permanent": true
+    },
+    {
+      "source": "/category/:path*",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/tag/:path*",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/author/sarah-thelistener/page/:n/",
+      "destination": "/author/sarah-thelistener/",
+      "permanent": true
+    },
+    {
+      "source": "/author/toolsadmin/",
+      "destination": "/about-us/",
+      "permanent": true
+    },
+    {
+      "source": "/author/hamza/",
+      "destination": "/about-us/",
+      "permanent": true
+    },
+    {
+      "source": "/blog/page/:n/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/page/:n/",
+      "destination": "/blog/",
+      "permanent": true
+    },
+    {
+      "source": "/wp-admin/:path*",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/wp-login.php",
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/wp-content/uploads/2026/05/Audiobook-1-300x120.png",
+      "destination": "/images/Audiobook-1.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/05/Audiobook-1.png",
+      "destination": "/images/Audiobook-1.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/06/Screenshot_2-1-300x123.webp",
+      "destination": "/images/Screenshot_2-1.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/06/Screenshot_2-1.webp",
+      "destination": "/images/Screenshot_2-1.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/06/Screenshot_3-300x133.webp",
+      "destination": "/images/Screenshot_3.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/06/Screenshot_3.webp",
+      "destination": "/images/Screenshot_3.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/06/new-ss-300x111.webp",
+      "destination": "/images/new-ss.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/06/new-ss.webp",
+      "destination": "/images/new-ss.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/Gemini_Generated_Image_6f2fjn6f2fjn6f2f-1024x541.png",
+      "destination": "/images/Gemini_Generated_Image_6f2fjn6f2fjn6f2f.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/Gemini_Generated_Image_6f2fjn6f2fjn6f2f-300x158.png",
+      "destination": "/images/Gemini_Generated_Image_6f2fjn6f2fjn6f2f.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/Gemini_Generated_Image_6f2fjn6f2fjn6f2f-768x406.png",
+      "destination": "/images/Gemini_Generated_Image_6f2fjn6f2fjn6f2f.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/Gemini_Generated_Image_6f2fjn6f2fjn6f2f.png",
+      "destination": "/images/Gemini_Generated_Image_6f2fjn6f2fjn6f2f.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/Gemini_Generated_Image_ccvew6ccvew6ccve-1024x541.png",
+      "destination": "/images/Gemini_Generated_Image_ccvew6ccvew6ccve.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/Gemini_Generated_Image_ccvew6ccvew6ccve-300x158.png",
+      "destination": "/images/Gemini_Generated_Image_ccvew6ccvew6ccve.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/Gemini_Generated_Image_ccvew6ccvew6ccve-768x406.png",
+      "destination": "/images/Gemini_Generated_Image_ccvew6ccvew6ccve.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/Gemini_Generated_Image_ccvew6ccvew6ccve.png",
+      "destination": "/images/Gemini_Generated_Image_ccvew6ccvew6ccve.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/Gemini_Generated_Image_g2px3fg2px3fg2px-1024x541.png",
+      "destination": "/images/Gemini_Generated_Image_g2px3fg2px3fg2px.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/Gemini_Generated_Image_g2px3fg2px3fg2px-300x158.png",
+      "destination": "/images/Gemini_Generated_Image_g2px3fg2px3fg2px.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/Gemini_Generated_Image_g2px3fg2px3fg2px-768x406.png",
+      "destination": "/images/Gemini_Generated_Image_g2px3fg2px3fg2px.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/Gemini_Generated_Image_g2px3fg2px3fg2px.png",
+      "destination": "/images/Gemini_Generated_Image_g2px3fg2px3fg2px.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/Gemini_Generated_Image_ig74okig74okig74-1024x572.png",
+      "destination": "/images/Gemini_Generated_Image_ig74okig74okig74.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/Gemini_Generated_Image_ig74okig74okig74.png",
+      "destination": "/images/Gemini_Generated_Image_ig74okig74okig74.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/Gemini_Generated_Image_kh8fhrkh8fhrkh8f.png",
+      "destination": "/images/Gemini_Generated_Image_kh8fhrkh8fhrkh8f.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/Gemini_Generated_Image_le523rle523rle52-1024x541.png",
+      "destination": "/images/Gemini_Generated_Image_le523rle523rle52.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/Gemini_Generated_Image_le523rle523rle52-300x158.png",
+      "destination": "/images/Gemini_Generated_Image_le523rle523rle52.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/Gemini_Generated_Image_le523rle523rle52-768x406.png",
+      "destination": "/images/Gemini_Generated_Image_le523rle523rle52.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/Gemini_Generated_Image_le523rle523rle52.png",
+      "destination": "/images/Gemini_Generated_Image_le523rle523rle52.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/Gemini_Generated_Image_mmfj1jmmfj1jmmfj-1024x572.png",
+      "destination": "/images/Gemini_Generated_Image_mmfj1jmmfj1jmmfj.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/Gemini_Generated_Image_mmfj1jmmfj1jmmfj.png",
+      "destination": "/images/Gemini_Generated_Image_mmfj1jmmfj1jmmfj.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/Gemini_Generated_Image_mww5dpmww5dpmww5-1024x572.png",
+      "destination": "/images/Gemini_Generated_Image_mww5dpmww5dpmww5.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/Gemini_Generated_Image_mww5dpmww5dpmww5.png",
+      "destination": "/images/Gemini_Generated_Image_mww5dpmww5dpmww5.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/Gemini_Generated_Image_nmm0nxnmm0nxnmm0-1024x541.png",
+      "destination": "/images/Gemini_Generated_Image_nmm0nxnmm0nxnmm0.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/Gemini_Generated_Image_nmm0nxnmm0nxnmm0-300x158.png",
+      "destination": "/images/Gemini_Generated_Image_nmm0nxnmm0nxnmm0.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/Gemini_Generated_Image_nmm0nxnmm0nxnmm0-768x406.png",
+      "destination": "/images/Gemini_Generated_Image_nmm0nxnmm0nxnmm0.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/Gemini_Generated_Image_nmm0nxnmm0nxnmm0.png",
+      "destination": "/images/Gemini_Generated_Image_nmm0nxnmm0nxnmm0.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/Gemini_Generated_Image_oig07yoig07yoig0-1024x541.jpg",
+      "destination": "/images/Gemini_Generated_Image_oig07yoig07yoig0.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/Gemini_Generated_Image_oig07yoig07yoig0.jpg",
+      "destination": "/images/Gemini_Generated_Image_oig07yoig07yoig0.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/Gemini_Generated_Image_qtgqlqtgqlqtgqlq-1024x559.png",
+      "destination": "/images/Gemini_Generated_Image_qtgqlqtgqlqtgqlq.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/Gemini_Generated_Image_qtgqlqtgqlqtgqlq.png",
+      "destination": "/images/Gemini_Generated_Image_qtgqlqtgqlqtgqlq.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/Gemini_Generated_Image_ygaa0wygaa0wygaa-1024x541.png",
+      "destination": "/images/Gemini_Generated_Image_ygaa0wygaa0wygaa.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/Gemini_Generated_Image_ygaa0wygaa0wygaa-300x158.png",
+      "destination": "/images/Gemini_Generated_Image_ygaa0wygaa0wygaa.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/Gemini_Generated_Image_ygaa0wygaa0wygaa-768x406.png",
+      "destination": "/images/Gemini_Generated_Image_ygaa0wygaa0wygaa.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/Gemini_Generated_Image_ygaa0wygaa0wygaa.png",
+      "destination": "/images/Gemini_Generated_Image_ygaa0wygaa0wygaa.webp",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/cropped-Gemini_Generated_Image_kh8fhrkh8fhrkh8f-180x180.png",
+      "destination": "/images/favicon-180.png",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/cropped-Gemini_Generated_Image_kh8fhrkh8fhrkh8f-192x192.png",
+      "destination": "/images/favicon-192.png",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/cropped-Gemini_Generated_Image_kh8fhrkh8fhrkh8f-270x270.png",
+      "destination": "/images/favicon-270.png",
+      "permanent": true
+    },
+    {
+      "source": "/wp-content/uploads/2026/07/cropped-Gemini_Generated_Image_kh8fhrkh8fhrkh8f-32x32.png",
+      "destination": "/images/favicon-32.png",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/images/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800"
+        }
+      ]
+    },
+    {
+      "source": "/fonts/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800"
+        }
+      ]
+    }
+  ]
+}

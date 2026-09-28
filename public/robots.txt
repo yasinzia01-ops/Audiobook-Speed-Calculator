@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://audiobookspeedcalculator.org/sitemap-index.xml

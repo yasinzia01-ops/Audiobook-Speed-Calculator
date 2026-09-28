@@ -1,0 +1,19 @@
+/* Small additions that replace behaviour Elementor's JS used to provide. */
+
+/* Blog post wrapper (was a per-post atomic class with flex-direction: column). */
+.elementor .post-flex {
+  flex-direction: column;
+}
+
+/* Table of contents: Elementor Pro "sticky top, 20px offset" on desktop and tablet. */
+@media (min-width: 768px) {
+  .elementor-widget-table-of-contents.elementor-toc--sticky {
+    position: sticky;
+    top: 20px;
+    align-self: flex-start;
+  }
+}
+.elementor-menu-anchor {
+  display: block;
+  scroll-margin-top: 20px;
+}

@@ -1,0 +1,50 @@
+---
+// Elementor Pro loop grid (loop item template 2003), filled from the blog collection.
+import { getCollection } from 'astro:content';
+import '../styles/elementor/widget-loop-common.css';
+import '../styles/elementor/widget-loop-grid.css';
+import '../styles/elementor/widget-post-info.css';
+import '../styles/elementor/local-2003-frontend-desktop.css';
+import '../styles/elementor/loop-2003.css';
+
+interface Props {
+  limit?: number;
+  elementClass: string;
+}
+const { limit, elementClass } = Astro.props;
+const posts = (await getCollection('blog')).sort((a, b) => b.data.published.valueOf() - a.data.published.valueOf());
+const shown = limit ? posts.slice(0, limit) : posts;
+const srcset = (src: string) => `${src.replace(/\.webp$/, '-768.webp')} 768w, ${src} 1424w`;
+---
+<div class={`elementor-element ${elementClass} elementor-element elementor-grid-3 elementor-grid-tablet-2 elementor-grid-mobile-1 elementor-widget elementor-widget-loop-grid`}>
+  <div class="elementor-widget-container">
+    <div class="elementor-loop-container elementor-grid" role="list">
+      {shown.map((post) => (
+        <div data-elementor-type="loop-item" data-elementor-id="2003" class={`elementor elementor-2003 e-loop-item e-loop-item-${post.id} post type-post`}>
+              <div class="elementor-element elementor-element-b6a4021 e-con e-atomic-element e-flexbox-base e-41c6acf " data-element_type="e-flexbox">
+                <div class="elementor-element elementor-element-dc2517a elementor-widget elementor-widget-image">
+                                        <a href={`/${post.id}/`}>
+                      <img decoding="async" width="1424" height="752" src={post.data.image} class="attachment-full size-full wp-image-2619" alt={post.data.imageAlt} srcset={srcset(post.data.image)} sizes="(max-width: 1424px) 100vw, 1424px" loading="lazy">                </a>
+                                      </div>
+            <div class="elementor-element elementor-element-b100a70 e-flex e-con-boxed e-con e-parent">
+                  <div class="e-con-inner">
+                <div class="elementor-element elementor-element-a597f53 elementor-align-left elementor-widget elementor-widget-post-info">
+                      <ul class="elementor-inline-items elementor-icon-list-items elementor-post-info">
+                        <li class="elementor-icon-list-item elementor-repeater-item-62f40da elementor-inline-item" itemprop="about">
+                                  <span class="elementor-icon-list-text elementor-post-info__item elementor-post-info__item--type-terms">
+                            <span class="elementor-post-info__terms-list">
+                <span class="elementor-post-info__terms-list-item">{post.data.category}</span>        </span>
+                  </span>
+                        </li>
+                </ul>
+                    </div>
+                <div class="elementor-element elementor-element-99b9ca5 elementor-widget elementor-widget-theme-post-title elementor-page-title elementor-widget-heading">
+                  <p class="elementor-heading-title elementor-size-default"><a href={`/${post.id}/`}>{post.data.title}</a></p>        </div>
+                  </div>
+                </div>
+        </div>
+            </div>
+      ))}
+    </div>
+  </div>
+</div>

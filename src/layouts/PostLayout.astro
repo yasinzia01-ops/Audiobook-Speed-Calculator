@@ -1,0 +1,156 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+import { AUTHORS, SITE } from '../data/site';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const d = post.data;
+const author = AUTHORS[d.author];
+const url = new URL(`/${post.id}/`, SITE.url).href;
+
+// Each migrated post keeps its own stylesheet (src/styles/posts/<slug>.css).
+// New posts fall back to the shared design stylesheet (_libby.css or _guide.css).
+const styles = import.meta.glob<string>('../styles/posts/*.css', { query: '?raw', import: 'default', eager: true });
+const css = styles[`../styles/posts/${post.id}.css`] ?? styles[`../styles/posts/_${d.design}.css`];
+
+const iso = (date?: Date) => date?.toISOString().replace('.000Z', '+00:00');
+const seo = {
+  title: d.seoTitle ?? `${d.title} - ${SITE.name}`,
+  description: d.description || undefined,
+  ogType: 'article',
+  ogImage: d.image,
+  ogImageWidth: 1424,
+  ogImageHeight: 752,
+  published: iso(d.published),
+  modified: iso(d.modified),
+  author: author.name,
+  twitter: [
+    ['twitter:label1', 'Written by'],
+    ['twitter:data1', author.name],
+    ...(d.readingMinutes ? [['twitter:label2', 'Est. reading time'], ['twitter:data2', `${d.readingMinutes} minutes`]] : []),
+  ] as [string, string][],
+};
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+    headline: d.title,
+    image: { '@type': 'ImageObject', url: new URL(d.image, SITE.url).href, width: 1424, height: 752 },
+    datePublished: iso(d.published),
+    dateModified: iso(d.modified ?? d.published),
+    author: { '@type': 'Person', name: author.name, url: new URL(author.url, SITE.url).href },
+    publisher: {
+      '@type': 'Organization',
+      name: SITE.name,
+      logo: { '@type': 'ImageObject', url: new URL(SITE.logo, SITE.url).href },
+    },
+    ...(d.description ? { description: d.description } : {}),
+  },
+];
+
+const crumbs = d.breadcrumb ?? [];
+// The guide breadcrumb relies on the spaces around each separator, so build it as a string.
+const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+const guideCrumbs =
+  ' ' + crumbs.map((c) => (c.href ? `<a href="${esc(c.href)}">${esc(c.label)}</a>` : esc(c.label))).join(' <span>›</span> ') + ' ';
+const widgetStyle = d.offsetTop !== undefined ? `margin:${d.offsetTop}px 0px calc(var(--kit-widget-spacing, 0px) + 0px) 0px;` : undefined;
+const bodyClass = 'wp-singular post-template post-template-elementor_header_footer single single-post single-format-standard hello-elementor-default elementor-default elementor-template-full-width elementor-kit-6 elementor-page';
+---
+<BaseLayout seo={seo} schema={schema} bodyClass={bodyClass}>
+  <div data-elementor-type="wp-post" class="elementor elementor-post">
+    <div class="elementor-element e-con e-atomic-element e-flexbox-base post-flex" data-element_type="e-flexbox">
+      <div class="elementor-element elementor-widget elementor-widget-html" style={widgetStyle}>
+        <style is:inline set:html={css}></style>
+        <article class="abc-article">
+          {d.design === 'libby' ? (
+            <Fragment>
+              {crumbs.length > 0 && (
+                <nav class="breadcrumb">
+                  {crumbs.map((c, i) => (
+                    <Fragment>
+                      {i > 0 && <span class="sep"> &rsaquo; </span>}
+                      {c.href ? <a href={c.href}>{c.label}</a> : <span>{c.label}</span>}
+                    </Fragment>
+                  ))}
+                </nav>
+              )}
+              {d.tag && (
+                <div class="post-meta">
+                  <span class="post-tag">{d.tag}</span>
+                  {d.readTime && <span class="post-info">{d.readTime}</span>}
+                  {d.updated && <span class="post-info">{d.updated}</span>}
+                </div>
+              )}
+            </Fragment>
+          ) : (
+            <Fragment>
+              {crumbs.length > 0 && (
+                <nav class="abc-breadcrumb" aria-label="Breadcrumb" set:html={guideCrumbs} />
+              )}
+              {d.tag && (
+                <div class="abc-meta">
+                  <span class="tag">{d.tag}</span>
+                  {d.readTime && <span>{d.readTime}</span>}
+                  {d.updated && <span>{d.updated}</span>}
+                </div>
+              )}
+            </Fragment>
+          )}
+          <h1>{d.title}</h1>
+          <slot />
+          {d.design === 'libby' ? (
+            <script is:inline>
+              (function () {
+                document.querySelectorAll('.faq-item').forEach(function (item) {
+                  var q = item.querySelector('.fq');
+                  var icon = document.createElement('span');
+                  icon.className = 'faq-icon';
+                  icon.textContent = '+';
+                  q.appendChild(icon);
+                  q.addEventListener('click', function () {
+                    var open = item.classList.contains('open');
+                    document.querySelectorAll('.faq-item').forEach(function (i) {
+                      i.classList.remove('open');
+                    });
+                    if (!open) item.classList.add('open');
+                  });
+                });
+              })();
+            </script>
+          ) : (
+            <script is:inline>
+              (function () {
+                document.querySelectorAll('.faq-item').forEach(function (item) {
+                  var q = item.querySelector('.fq');
+                  var a = item.querySelector('.fa');
+                  var icon = document.createElement('span');
+                  icon.className = 'faq-icon';
+                  icon.textContent = '+';
+                  q.style.cursor = 'pointer';
+                  q.appendChild(icon);
+                  q.addEventListener('click', function () {
+                    var open = item.classList.contains('open');
+                    document.querySelectorAll('.faq-item').forEach(function (x) {
+                      x.classList.remove('open');
+                      x.querySelector('.fa').style.display = 'none';
+                    });
+                    if (!open) {
+                      item.classList.add('open');
+                      a.style.display = 'block';
+                    }
+                  });
+                });
+              })();
+            </script>
+          )}
+        </article>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

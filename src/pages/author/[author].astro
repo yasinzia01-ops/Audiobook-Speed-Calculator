@@ -1,0 +1,66 @@
+---
+// Author archive (Elementor Pro archive template 2431, "classic" posts skin).
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { AUTHORS, SITE } from '../../data/site';
+import '../../styles/elementor/widget-heading.css';
+import '../../styles/elementor/widget-posts.css';
+import '../../styles/elementor/elementor-post-2431.css';
+
+export function getStaticPaths() {
+  return Object.keys(AUTHORS).map((author) => ({ params: { author } }));
+}
+
+const { author } = Astro.params;
+const { name } = AUTHORS[author];
+const posts = (await getCollection('blog', (p) => p.data.author === author)).sort(
+  (a, b) => b.data.published.valueOf() - a.data.published.valueOf(),
+);
+
+const seo = {
+  title: `${name}, Author at ${SITE.name}`,
+  ogType: 'profile',
+};
+const bodyClass = `archive author author-${author} wp-theme-hello-elementor hello-elementor-default elementor-page-2431 elementor-default elementor-template-full-width elementor-kit-6`;
+---
+<BaseLayout seo={seo} bodyClass={bodyClass}>
+  <div data-elementor-type="archive" data-elementor-id="2431" class="elementor elementor-2431 elementor-location-archive">
+    <div class="elementor-element elementor-element-ddfe0f8 e-flex e-con-boxed e-con e-parent">
+      <div class="e-con-inner">
+        <div class="elementor-element elementor-element-5f74ade elementor-widget elementor-widget-heading">
+          <h2 class="elementor-heading-title elementor-size-default">Author: <span class="vcard">{name}</span></h2>
+        </div>
+      </div>
+    </div>
+    <div class="elementor-element elementor-element-19ec943 e-flex e-con-boxed e-con e-parent">
+      <div class="e-con-inner">
+        <div class="elementor-element elementor-element-7149b69 e-con-full e-flex e-con e-child">
+          <div class="elementor-element elementor-element-b69d587 elementor-grid-3 elementor-grid-tablet-2 elementor-grid-mobile-1 elementor-posts--thumbnail-top elementor-widget elementor-widget-archive-posts">
+            <div class="elementor-posts-container elementor-posts elementor-posts--skin-classic elementor-grid" role="list">
+              {posts.map((post) => (
+                <article class="elementor-post elementor-grid-item post type-post has-post-thumbnail" role="listitem">
+                  <a class="elementor-post__thumbnail__link" href={`/${post.id}/`} tabindex="-1">
+                    <div class="elementor-post__thumbnail">
+                      <img width="1424" height="752" loading="lazy" src={post.data.image} srcset={`${post.data.image.replace(/\.webp$/, '-768.webp')} 768w, ${post.data.image} 1424w`} sizes="(max-width: 767px) 100vw, 33vw" alt={post.data.imageAlt} />
+                    </div>
+                  </a>
+                  <div class="elementor-post__text">
+                    <h3 class="elementor-post__title">
+                      <a href={`/${post.id}/`}>{post.data.title}</a>
+                    </h3>
+                    {post.data.description && (
+                      <div class="elementor-post__excerpt">
+                        <p>{post.data.description}</p>
+                      </div>
+                    )}
+                    <a class="elementor-post__read-more" href={`/${post.id}/`} aria-label={`Read more about ${post.data.title}`} tabindex="-1">Read More »</a>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
