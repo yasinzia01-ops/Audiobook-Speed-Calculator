@@ -2,7 +2,19 @@
 
 **Review gate**: stop after every phase and wait for the user to approve before starting the next.
 
-Each task has a verify step, so progress is checked, not assumed. When every task is ticked, write LOOP_COMPLETE on its own line at the end of this file.
+**Loop**: the rules for the autonomous loop are in `ralphloop.md`. Run the agent with `PROMPT.md` repeatedly until `RALPH.md` contains the word LOOP_COMPLETE on its own line (or the loop stops at a review gate):
+
+```bash
+until grep -qx "LOOP_COMPLETE" RALPH.md; do claude -p "$(cat PROMPT.md)"; done
+```
+
+PowerShell:
+
+```powershell
+while (-not (Select-String -Path RALPH.md -Pattern '^LOOP_COMPLETE$' -Quiet)) { claude -p (Get-Content PROMPT.md -Raw) }
+```
+
+You can also run one iteration at a time in VS Code by pasting `PROMPT.md`. Each task has a verify step, so progress is checked, not assumed. Tasks marked **(human)** are for the owner; the loop never does them. LOOP_COMPLETE is written only when every non-human task is ticked.
 
 ## Phase 0: Setup
 - [x] 0.1 Clone `yasinzia01-ops/Audiobook-Speed-Calculator`, install Astro 7 + `@astrojs/sitemap`, set `site`, `trailingSlash: 'always'`, `format: 'directory'`. Verify: `npm run build` passes.
@@ -36,13 +48,13 @@ Each task has a verify step, so progress is checked, not assumed. When every tas
 ## Phase 5: SEO and delivery
 - [x] 5.1 Sitemap (`/sitemap-index.xml`), `robots.txt`, `ads.txt`.
 - [x] 5.2 SEO parity check on all pages. Verify: title, canonical, H1 count, schema types equal to live.
-- [x] 5.3 Internal link check and redirect map in `vercel.json` (67 redirects, incl. old sitemap URLs).
+- [x] 5.3 Internal link check. Verify: no broken internal links. (No redirects from WordPress URLs, by owner decision; `vercel.json` has none.)
 - [x] 5.4 Visual review against the live site. Verify: pixel diff 0.00–0.24% at 1440px and 390px.
 - [x] 5.5 Deploy the demo to Vercel with noindex on `*.vercel.app`.
 - [ ] 5.6 Lighthouse pass (performance, accessibility, SEO >= 90 on mobile).
-- [ ] 5.7 Connect GitHub to Vercel so pushes deploy automatically.
-- [ ] 5.8 Replace the sample contact details with real ones.
-- [ ] 5.9 Domain cutover (after the hosting decision), then submit the new sitemap in Search Console.
+- [ ] 5.7 **(human)** Connect GitHub to Vercel so pushes deploy automatically.
+- [ ] 5.8 **(human)** Replace the sample contact details with real ones (`src/pages/contact-us.astro`).
+- [ ] 5.9 **(human)** Domain cutover (after the hosting decision), then submit `/sitemap-index.xml` in Search Console.
 
 ## Blockers
 - 5.7: Vercel could not connect the GitHub repo (Vercel GitHub app not installed on the account). User action: Vercel project → Settings → Git → Connect Git Repository.
@@ -54,4 +66,5 @@ Each task has a verify step, so progress is checked, not assumed. When every tas
 - 2026-09-28 The live site was edited mid-build (blog card design changed); everything was re-downloaded fresh and reconverted.
 - 2026-09-28 Phase 4-5 verified: pixel diffs 0.00–0.24%, functional checks pass, SEO parity equal, no JS errors. Pushed to GitHub, deployed to https://audiobook-speed-calculator.vercel.app with noindex.
 - 2026-09-28 Contact Us page + header button added; `/contact` 404 fixed; 6 menu items linked; dead Audible link replaced. Deployed.
-- 2026-09-29 Added redirects from the old Yoast sitemap URLs to `/sitemap-index.xml`. Wrote SOLUTION.md and RALPH.md.
+- 2026-09-29 Wrote SOLUTION.md and RALPH.md.
+- 2026-09-29 Owner decision: no redirects from WordPress URLs. Removed all 67 redirects from `vercel.json` (old sitemap, image, feed, category, pagination and front-page-slug URLs now 404). Added `ralphloop.md` and `PROMPT.md`.

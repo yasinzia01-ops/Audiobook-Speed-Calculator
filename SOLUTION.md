@@ -32,8 +32,8 @@ Content site with a few interactive calculators. Astro ships no JS by default, g
 ## 5. SEO parity strategy
 - Titles, meta descriptions, canonicals, Open Graph, Twitter labels and robots copied from the Yoast output.
 - Schema Pro JSON-LD copied verbatim per page (HowTo, SoftwareApplication, WebPage, FAQPage). Posts generate `Article` from frontmatter (same fields as Schema Pro, with `@type` capitalisation fixed).
-- Sitemap: `@astrojs/sitemap` → `/sitemap-index.xml`. The old Yoast sitemap URLs redirect there.
-- `vercel.json` redirects: front-page slug, feeds, category/tag archives, extra author pages, pagination, every old `/wp-content/uploads/...` image URL (to the WebP copies), old sitemap URLs.
+- Sitemap: `@astrojs/sitemap` → `/sitemap-index.xml` (Yoast used `/sitemap_index.xml`; resubmit in Search Console at cutover).
+- **No redirects from WordPress URLs** (owner decision, 2026-09-29). Every page keeps its WordPress URL, so pages need none. URLs that existed only in WordPress return the 404 page: `/audiobook-speed-calculator/` (front-page slug), feeds, category/tag archives, `/author/toolsadmin/`, `/author/hamza/`, pagination, old `/wp-content/uploads/...` image URLs and the Yoast sitemap files. The only automatic redirect left is Vercel's trailing slash (`/speed-chart` → `/speed-chart/`).
 - Demo domain protection: `X-Robots-Tag: noindex, nofollow` only on `*.vercel.app` hosts, so the demo never competes with the live site.
 
 ## 6. Feature inventory and mapping
@@ -94,3 +94,5 @@ Audiobook-Speed-Calculator/
 - "How Long Can You Keep a Libby Audiobook?": the live page prints stray `═══… -->` text from a broken HTML comment; not copied, and the post's negative offset removed so it sits like the other posts.
 - Mega menu: 6 items with matching pages were linked; items without pages stay plain text as on live. Resources > Contact Us fixed (`/contact` was a 404).
 - Dead Audible help link replaced with the current "Set narration speed" article.
+- No redirects from WordPress URLs (all 67 removed from `vercel.json` on 2026-09-29). WordPress itself is never modified.
+- Autonomous work runs through the Ralph loop (`ralphloop.md` + `RALPH.md`); the loop commits locally and never pushes or deploys.

@@ -46,4 +46,5 @@ New posts use `src/styles/posts/_libby.css` or `_guide.css`. The migrated posts 
 | `src/styles/elementor/` | Original Elementor CSS |
 | `src/data/site.ts` | Site name, Google tag ID, authors |
 | `public/` | Images, icon font, `ads.txt`, `robots.txt` |
-| `vercel.json` | Redirects for old WordPress URLs and cache headers |
+| `vercel.json` | Trailing-slash URLs, noindex on the demo domain, cache headers (no redirects from WordPress URLs, by decision) |
+| `RALPH.md`, `ralphloop.md`, `SOLUTION.md` | Task checklist, the autonomous loop rules, architecture notes |
