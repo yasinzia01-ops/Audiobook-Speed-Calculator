@@ -1,78 +1,116 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import '../styles/elementor/e-sticky.css';
-import '../styles/elementor/widget-table-of-contents.css';
+import LegalPage from '../components/LegalPage.astro';
 import '../styles/elementor/elementor-post-2321.css';
 
+const updated = 'September 29, 2026';
+
 const seo = {
-  "title": "Terms & Condition - Audiobook Speed Calculator",
-  "ogType": "article",
-  "modified": "2026-06-29T19:24:19+00:00",
-  "twitter": [
-    [
-      "twitter:label1",
-      "Est. reading time"
-    ],
-    [
-      "twitter:data1",
-      "2 minutes"
-    ]
-  ]
+  title: 'Terms & Condition - Audiobook Speed Calculator',
+  ogType: 'article',
+  modified: '2026-09-29T00:00:00+00:00',
+  twitter: [
+    ['twitter:label1', 'Est. reading time'],
+    ['twitter:data1', '4 minutes'],
+  ] as [string, string][],
 };
 const schema = [
   {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Terms & Condition",
-    "url": "https://audiobookspeedcalculator.org/terms-condition/",
-    "description": null,
-    "datePublished": "2026-06-15T14:02:02",
-    "dateModified": "2026-06-29T19:24:19",
-    "inLanguage": null,
-    "author": {
-      "@type": "Person",
-      "name": "Sarah Connell",
-      "url": "https://audiobookspeedcalculator.org/author/sarah-thelistener"
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Terms & Condition',
+    url: 'https://audiobookspeedcalculator.org/terms-condition/',
+    datePublished: '2026-06-15T14:02:02',
+    dateModified: '2026-09-29T00:00:00',
+    author: {
+      '@type': 'Person',
+      name: 'Sarah Connell',
+      url: 'https://audiobookspeedcalculator.org/author/sarah-thelistener',
     },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Audiobook Speed Calculator",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://audiobookspeedcalculator.org/images/Gemini_Generated_Image_kh8fhrkh8fhrkh8f.webp"
-      }
+    publisher: {
+      '@type': 'Organization',
+      name: 'Audiobook Speed Calculator',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://audiobookspeedcalculator.org/images/Gemini_Generated_Image_kh8fhrkh8fhrkh8f.webp',
+      },
     },
-    "isPartOf": {
-      "@type": "WebSite",
-      "@id": "https://audiobookspeedcalculator.org"
-    }
-  }
+    isPartOf: { '@type': 'WebSite', '@id': 'https://audiobookspeedcalculator.org' },
+  },
 ];
+
+const sections = [
+  {
+    title: 'Acceptance of These Terms',
+    html: `<p>These Terms & Conditions apply to your use of audiobookspeedcalculator.org (the "site"). By using the site you agree to them. If you do not agree, please do not use the site.</p>`,
+  },
+  {
+    title: 'About the Service',
+    html: `<p>The site provides free tools and information for audiobook listeners, including the Audiobook Speed Calculator, the Libby Speed Calculator, the audiobook speed chart, an audiobook length list and listening guides. The site is free to use and does not require an account.</p>`,
+  },
+  {
+    title: 'Results Are Estimates',
+    html: `<p>Calculator results are estimates for planning purposes. Actual listening time can differ because of how each app applies playback speed, chapter breaks, pauses and rounding.</p>
+<ul>
+<li>Audiobook lengths in our lists are approximate and can vary by edition, narrator and platform.</li>
+<li>Library loan periods, renewals and holds (for example in Libby or OverDrive) are set by each library and can change.</li>
+<li>Speed and comprehension guidance is general information, not professional, medical or educational advice.</li>
+</ul>
+<p>Always check the details shown in your own audiobook app or library account.</p>`,
+  },
+  {
+    title: 'Acceptable Use',
+    html: `<p>You agree not to:</p>
+<ul>
+<li>Use the site in any way that breaks the law or harms other people.</li>
+<li>Try to disrupt, overload or gain unauthorised access to the site or its hosting.</li>
+<li>Copy the site's content in bulk, or scrape it automatically in a way that burdens the site.</li>
+<li>Present our tools or content as your own, or remove notices of ownership.</li>
+</ul>`,
+  },
+  {
+    title: 'Intellectual Property',
+    html: `<p>The site's text, calculators, charts, design and images belong to Audiobook Speed Calculator or its licensors and are protected by copyright. You may link to any page and quote short passages with a link back to the source. Any other reuse needs our written permission.</p>`,
+  },
+  {
+    title: 'Trademarks and Affiliation',
+    html: `<p>Audible, Libby, OverDrive, Spotify, Apple Books, Hoopla, Scribd and other product names mentioned on the site are trademarks of their respective owners. We use them only to describe compatibility and features. The site is independent and is not affiliated with, endorsed by or sponsored by any of these companies.</p>`,
+  },
+  {
+    title: 'Third-Party Links and Advertising',
+    html: `<p>The site links to other websites and may display advertising, including ads from Google AdSense. We do not control third-party websites or ads and are not responsible for their content, products or practices. Your dealings with them are between you and the third party. See our <a href="/privacy-policy/">Privacy Policy</a> for how advertising cookies may be used.</p>`,
+  },
+  {
+    title: 'Disclaimer of Warranties',
+    html: `<p>The site and all tools are provided "as is" and "as available", without warranties of any kind, express or implied, including accuracy, fitness for a particular purpose and uninterrupted availability. We may change, suspend or remove any part of the site at any time.</p>`,
+  },
+  {
+    title: 'Limitation of Liability',
+    html: `<p>To the fullest extent permitted by law, Audiobook Speed Calculator is not liable for any indirect, incidental or consequential loss, or for any loss arising from reliance on calculator results or site content, such as a library loan expiring before you finish a book. Nothing in these terms limits liability that cannot be limited under applicable law.</p>`,
+  },
+  {
+    title: 'Changes to These Terms',
+    html: `<p>We may update these Terms & Conditions from time to time. The new version will be posted on this page with an updated "Last updated" date. Continuing to use the site after a change means you accept the updated terms.</p>`,
+  },
+  {
+    title: 'Severability',
+    html: `<p>If any part of these terms is found to be unenforceable, the rest of the terms remain in full effect.</p>`,
+  },
+  {
+    title: 'Contact Us',
+    html: `<p>If you have any questions about these Terms & Conditions, please reach us through our <a href="/contact-us/">Contact Us</a> page.</p>`,
+  },
+];
+
+const bodyClass =
+  'wp-singular page-template page-template-elementor_header_footer page page-id-2321 wp-embed-responsive wp-theme-hello-elementor hello-elementor-default elementor-default elementor-template-full-width elementor-kit-6 elementor-page elementor-page-2321';
 ---
-<BaseLayout seo={seo} schema={schema} bodyClass="wp-singular page-template page-template-elementor_header_footer page page-id-2321 wp-embed-responsive wp-theme-hello-elementor wp-schema-pro-2.11.4 hello-elementor-default elementor-default elementor-template-full-width elementor-kit-6 elementor-page elementor-page-2321 elementor-page-17">
-<div data-elementor-type="wp-page" data-elementor-id="2321" class="elementor elementor-2321">
-        <div class="elementor-element elementor-element-b18e754 e-flex e-con-boxed e-con e-parent">
-          <div class="e-con-inner">
-        <div class="elementor-element elementor-element-7f97dcf elementor-widget elementor-widget-heading">
-          <h2 class="elementor-heading-title elementor-size-default">Terms &amp; Condition</h2>        </div>
-          </div>
-        </div>
-    <div class="elementor-element elementor-element-ab5e471 e-flex e-con-boxed e-con e-parent">
-          <div class="e-con-inner">
-    <div class="elementor-element elementor-element-6dad446 e-con-full e-flex e-con e-child">
-        <div class="elementor-element elementor-element-e175afc elementor-widget elementor-widget-table-of-contents elementor-toc--sticky">
-                  <div class="elementor-toc__header">
-            <h4 class="elementor-toc__header-title">
-        Table of Contents      </h4>
-                </div>
-        <div id="elementor-toc__e175afc" class="elementor-toc__body elementor-toc__list-items--collapsible"><ol class="elementor-toc__list-wrapper"><li class="elementor-toc__list-item"><div class="elementor-toc__list-item-text-wrapper"><a href="#elementor-toc__heading-anchor-0" class="elementor-toc__list-item-text elementor-toc__top-level">Information We Collect</a></div></li><li class="elementor-toc__list-item"><div class="elementor-toc__list-item-text-wrapper"><a href="#elementor-toc__heading-anchor-1" class="elementor-toc__list-item-text elementor-toc__top-level">How We Use Your Information</a></div></li><li class="elementor-toc__list-item"><div class="elementor-toc__list-item-text-wrapper"><a href="#elementor-toc__heading-anchor-2" class="elementor-toc__list-item-text elementor-toc__top-level">Sharing Your Information</a></div></li><li class="elementor-toc__list-item"><div class="elementor-toc__list-item-text-wrapper"><a href="#elementor-toc__heading-anchor-3" class="elementor-toc__list-item-text elementor-toc__top-level">Your Rights</a></div></li><li class="elementor-toc__list-item"><div class="elementor-toc__list-item-text-wrapper"><a href="#elementor-toc__heading-anchor-4" class="elementor-toc__list-item-text elementor-toc__top-level">Security</a></div></li><li class="elementor-toc__list-item"><div class="elementor-toc__list-item-text-wrapper"><a href="#elementor-toc__heading-anchor-5" class="elementor-toc__list-item-text elementor-toc__top-level">Children’s Privacy</a></div></li><li class="elementor-toc__list-item"><div class="elementor-toc__list-item-text-wrapper"><a href="#elementor-toc__heading-anchor-6" class="elementor-toc__list-item-text elementor-toc__top-level">Changes to This Policy</a></div></li><li class="elementor-toc__list-item"><div class="elementor-toc__list-item-text-wrapper"><a href="#elementor-toc__heading-anchor-7" class="elementor-toc__list-item-text elementor-toc__top-level">Contact Us</a></div></li></ol></div>
-            </div>
-        </div>
-    <div class="elementor-element elementor-element-6094342 e-con-full e-flex e-con e-child">
-        <div class="elementor-element elementor-element-5bed67c elementor-widget-tablet__width-inherit elementor-widget elementor-widget-text-editor">
-                  <span id="elementor-toc__heading-anchor-0" class="elementor-menu-anchor"></span><h3><strong><span style="color: #000000;">Information We Collect</span></strong></h3><p>We collect information to provide better services to all our users. This includes:</p><p>Information you provide: Such as your name, email address, and any other data you voluntarily submit via forms or account creation.</p><p>Information collected automatically: When you use our service, we automatically collect data such as IP address, browser type, device information, and usage statistics (via cookies and similar tracking technologies).</p><span id="elementor-toc__heading-anchor-1" class="elementor-menu-anchor"></span><h3><span style="color: #000000;"><strong>How We Use Your Information</strong></span></h3><p>We use the collected information for the following purposes:</p><p>To operate, maintain, and improve our services.</p><p>To communicate with you, including responding to your inquiries and sending updates.</p><p>To monitor and analyze trends, usage, and activities in connection with our services.</p><p>To comply with legal obligations.</p><span id="elementor-toc__heading-anchor-2" class="elementor-menu-anchor"></span><h3><span style="color: #000000;"><strong>Sharing Your Information</strong></span></h3><p>We do not sell your personal information. We may share your data only in the following limited circumstances:</p><p>Service Providers: With third-party vendors who perform services on our behalf (e.g., hosting, analytics).</p><p>Legal Requirements: If required by law or in response to valid requests by public authorities.</p><p>Business Transfers: In the event of a merger, sale, or acquisition of company assets.</p><span id="elementor-toc__heading-anchor-3" class="elementor-menu-anchor"></span><h3><span style="color: #000000;"><strong>Your Rights</strong></span></h3><p>Depending on your location, you may have the right to:</p><p>Access/Request: Obtain a copy of the personal data we hold about you.</p><p>Correction: Request that we correct inaccurate information.</p><p>Deletion: Request that we delete your personal data under certain conditions.</p><span id="elementor-toc__heading-anchor-4" class="elementor-menu-anchor"></span><h3><span style="color: #000000;"><strong>Security</strong></span></h3><p>We take reasonable measures to help protect information about you from loss, theft, misuse, and unauthorized access. However, no internet-based service is 100% secure.</p><span id="elementor-toc__heading-anchor-5" class="elementor-menu-anchor"></span><h3><span style="color: #000000;"><strong>Children’s Privacy</strong></span></h3><p>Our services are not directed to individuals under the age of 13. We do not knowingly collect personal information from children under 13.</p><span id="elementor-toc__heading-anchor-6" class="elementor-menu-anchor"></span><h3><span style="color: #000000;"><strong>Changes to This Policy</strong></span></h3><p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page.</p><span id="elementor-toc__heading-anchor-7" class="elementor-menu-anchor"></span><h3><span style="color: #000000;"><strong>Contact Us</strong></span></h3><p>If you have any questions about this Privacy Policy, please contact us at: [Insert Your Email Address Here]</p><p>Important Next Steps<br>Customize: Replace the bracketed information (like [Insert Your Email Address Here]) with your actual business details.</p><p>Review Local Laws: Depending on your country or the country where your users live (e.g., California’s CCPA, the EU’s GDPR, or your local data protection laws), you may need specific legal clauses that are not included in this general template.</p><p>Professional Counsel: If you are collecting sensitive data (health information, financial data, or children’s data), I strongly recommend having this document reviewed by a qualified legal professional to ensure full compliance with your specific jurisdiction.</p><p>Would you like me to refine this document for a specific industry, such as an e-commerce store, a blog, or a mobile app?</p>                </div>
-        </div>
-          </div>
-        </div>
-        </div>
+<BaseLayout seo={seo} schema={schema} bodyClass={bodyClass}>
+  <LegalPage
+    pageId={2321}
+    ids={{ hero: 'b18e754', heading: '7f97dcf', body: 'ab5e471', tocCol: '6dad446', toc: 'e175afc', textCol: '6094342', text: '5bed67c' }}
+    title="Terms & Condition"
+    updated={updated}
+    sections={sections}
+  />
 </BaseLayout>

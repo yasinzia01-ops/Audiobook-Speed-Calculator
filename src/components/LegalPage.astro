@@ -1,0 +1,91 @@
+---
+// Legal page body (Privacy Policy, Terms & Condition): title bar, sticky table of contents
+// and the text. Same Elementor markup as the original pages; the TOC is built from `sections`.
+import '../styles/elementor/e-sticky.css';
+import '../styles/elementor/widget-table-of-contents.css';
+
+interface Section {
+  title: string;
+  html: string;
+}
+interface Props {
+  pageId: number;
+  // Elementor element IDs of the original page, so its CSS (elementor-post-<pageId>.css) applies.
+  ids: { hero: string; heading: string; body: string; tocCol: string; toc: string; textCol: string; text: string };
+  title: string;
+  updated: string;
+  sections: Section[];
+}
+
+const { pageId, ids, title, updated, sections } = Astro.props;
+const anchor = (i: number) => `elementor-toc__heading-anchor-${i}`;
+---
+<div data-elementor-type="wp-page" data-elementor-id={pageId} class={`elementor elementor-${pageId}`}>
+  <div class={`elementor-element elementor-element-${ids.hero} e-flex e-con-boxed e-con e-parent`}>
+    <div class="e-con-inner">
+      <div class={`elementor-element elementor-element-${ids.heading} elementor-widget elementor-widget-heading`}>
+        <h1 class="elementor-heading-title elementor-size-default">{title}</h1>
+      </div>
+    </div>
+  </div>
+  <div class={`elementor-element elementor-element-${ids.body} e-flex e-con-boxed e-con e-parent`}>
+    <div class="e-con-inner">
+      <div class={`elementor-element elementor-element-${ids.tocCol} e-con-full e-flex e-con e-child`}>
+        <div class={`elementor-element elementor-element-${ids.toc} elementor-widget elementor-widget-table-of-contents elementor-toc--sticky`}>
+          <div class="elementor-toc__header">
+            <h4 class="elementor-toc__header-title">Table of Contents</h4>
+          </div>
+          <div id={`elementor-toc__${ids.toc}`} class="elementor-toc__body elementor-toc__list-items--collapsible">
+            <ol class="elementor-toc__list-wrapper">
+              {sections.map((s, i) => (
+                <li class="elementor-toc__list-item">
+                  <div class="elementor-toc__list-item-text-wrapper">
+                    <a href={`#${anchor(i)}`} class="elementor-toc__list-item-text elementor-toc__top-level">{s.title}</a>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div class={`elementor-element elementor-element-${ids.textCol} e-con-full e-flex e-con e-child`}>
+        <div class={`elementor-element elementor-element-${ids.text} elementor-widget-tablet__width-inherit elementor-widget elementor-widget-text-editor legal-text`}>
+          <p class="legal-updated"><em>Last updated: {updated}</em></p>
+          {sections.map((s, i) => (
+            <Fragment>
+              <span id={anchor(i)} class="elementor-menu-anchor"></span>
+              <h3><strong><span style="color: #000000;">{s.title}</span></strong></h3>
+              <Fragment set:html={s.html} />
+            </Fragment>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  .legal-text p {
+    margin: 0 0 14px;
+  }
+  .legal-text ul {
+    margin: 0 0 14px;
+    padding-inline-start: 22px;
+  }
+  .legal-text li {
+    margin-bottom: 6px;
+  }
+  .legal-text h3 {
+    margin-top: 28px;
+  }
+  .legal-text a {
+    color: #00809d;
+    text-decoration: underline;
+  }
+  .legal-text a:hover {
+    color: #005f75;
+  }
+  .legal-text .legal-updated + .elementor-menu-anchor + h3 {
+    margin-top: 8px;
+  }
+</style>

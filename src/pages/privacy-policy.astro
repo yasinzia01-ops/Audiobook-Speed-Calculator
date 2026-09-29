@@ -1,110 +1,134 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import '../styles/elementor/e-sticky.css';
-import '../styles/elementor/widget-table-of-contents.css';
+import LegalPage from '../components/LegalPage.astro';
 import '../styles/elementor/elementor-post-2316.css';
 
+const updated = 'September 29, 2026';
+
 const seo = {
-  "title": "Privacy Policy - Audiobook Speed Calculator",
-  "ogType": "article",
-  "modified": "2026-06-29T19:24:19+00:00",
-  "twitter": [
-    [
-      "twitter:label1",
-      "Est. reading time"
-    ],
-    [
-      "twitter:data1",
-      "2 minutes"
-    ]
-  ]
+  title: 'Privacy Policy - Audiobook Speed Calculator',
+  ogType: 'article',
+  modified: '2026-09-29T00:00:00+00:00',
+  twitter: [
+    ['twitter:label1', 'Est. reading time'],
+    ['twitter:data1', '4 minutes'],
+  ] as [string, string][],
 };
 const schema = [
   {
-    "@context": "https://schema.org",
-    "@type": "WebPage",
-    "name": "Privacy Policy",
-    "url": "https://audiobookspeedcalculator.org/privacy-policy/",
-    "description": null,
-    "datePublished": "2026-06-15T13:58:26",
-    "dateModified": "2026-06-29T19:24:19",
-    "inLanguage": null,
-    "author": {
-      "@type": "Person",
-      "name": "Sarah Connell",
-      "url": "https://audiobookspeedcalculator.org/author/sarah-thelistener"
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'Privacy Policy',
+    url: 'https://audiobookspeedcalculator.org/privacy-policy/',
+    datePublished: '2026-06-15T13:58:26',
+    dateModified: '2026-09-29T00:00:00',
+    author: {
+      '@type': 'Person',
+      name: 'Sarah Connell',
+      url: 'https://audiobookspeedcalculator.org/author/sarah-thelistener',
     },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Audiobook Speed Calculator",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://audiobookspeedcalculator.org/images/Gemini_Generated_Image_kh8fhrkh8fhrkh8f.webp"
-      }
+    publisher: {
+      '@type': 'Organization',
+      name: 'Audiobook Speed Calculator',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://audiobookspeedcalculator.org/images/Gemini_Generated_Image_kh8fhrkh8fhrkh8f.webp',
+      },
     },
-    "isPartOf": {
-      "@type": "WebSite",
-      "@id": "https://audiobookspeedcalculator.org"
-    }
-  }
+    isPartOf: { '@type': 'WebSite', '@id': 'https://audiobookspeedcalculator.org' },
+  },
 ];
+
+const sections = [
+  {
+    title: 'Who We Are',
+    html: `<p>Audiobook Speed Calculator (audiobookspeedcalculator.org, "we", "us") is a free website with audiobook listening-time calculators, a speed chart, an audiobook length list and listening guides. This policy explains what information is collected when you use the site and how it is used.</p>`,
+  },
+  {
+    title: 'Information We Collect',
+    html: `<p>We keep data collection to a minimum. You do not need an account, and the site has no sign-up or login.</p>
+<ul>
+<li><strong>Calculator entries:</strong> the book lengths, speeds, dates and other values you type into our calculators are processed in your browser. They are not sent to us or stored by us.</li>
+<li><strong>Usage data:</strong> when you visit, our analytics provider collects information such as the pages you view, how long you stay, the referring website, your browser and device type, and your approximate location (city or country, derived from your IP address).</li>
+<li><strong>Server logs:</strong> our hosting provider automatically records technical data for each request, such as IP address, browser user agent, the page requested and the time. These logs are used for security and to keep the site running.</li>
+<li><strong>Information you send us:</strong> if you contact us by email or phone, we receive your contact details and whatever you choose to include in your message.</li>
+</ul>`,
+  },
+  {
+    title: 'How We Use Your Information',
+    html: `<ul>
+<li>To run the website and keep it secure and available.</li>
+<li>To understand which pages and calculators are useful, fix problems and improve content.</li>
+<li>To reply to your messages and questions.</li>
+<li>To comply with legal obligations.</li>
+</ul>
+<p>We do not use your information to make automated decisions about you, and we do not sell your personal information.</p>`,
+  },
+  {
+    title: 'Cookies and Analytics',
+    html: `<p>We use Google Analytics (through the Google tag) to measure how visitors use the site. Google Analytics sets cookies in your browser and processes usage data on Google's servers. You can learn more in <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">how Google uses information from sites that use its services</a>.</p>
+<p>You can block or delete cookies in your browser settings, or install the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics opt-out browser add-on</a>. The calculators keep working if cookies are blocked.</p>`,
+  },
+  {
+    title: 'Advertising',
+    html: `<p>We may show ads from Google AdSense to keep the site free. If ads are shown, Google and its partners may use cookies to serve ads based on your visits to this and other websites. You can turn off personalised ads in <a href="https://adssettings.google.com/" target="_blank" rel="noopener">Google Ads Settings</a> or visit <a href="https://www.aboutads.info/choices/" target="_blank" rel="noopener">aboutads.info</a> to opt out of some third-party vendors' use of cookies for personalised advertising.</p>`,
+  },
+  {
+    title: 'Third-Party Services',
+    html: `<p>We rely on a few service providers, each of which processes limited data on our behalf or when your browser connects to them:</p>
+<ul>
+<li><strong>Hosting</strong> (our web hosting and content delivery provider): serves the pages and keeps server logs.</li>
+<li><strong>Google Analytics:</strong> website statistics, as described above.</li>
+<li><strong>Google Fonts:</strong> your browser loads fonts from Google's servers, which receive your IP address.</li>
+</ul>
+<p>Our pages also link to other websites, such as Audible, Libby, OverDrive and Spotify. We are not responsible for their privacy practices, so please read their policies when you visit them.</p>`,
+  },
+  {
+    title: 'Data Retention',
+    html: `<p>Analytics data is kept for the retention period set in our Google Analytics account and then deleted automatically. Server logs are kept only as long as our hosting provider needs them for security and operations. Emails are kept for as long as needed to answer you and for our records, and you can ask us to delete them.</p>`,
+  },
+  {
+    title: 'Your Rights',
+    html: `<p>Depending on where you live (for example under the GDPR in the EU and UK, or the CCPA in California), you may have the right to:</p>
+<ul>
+<li>Access the personal data we hold about you and get a copy of it.</li>
+<li>Ask us to correct or delete your personal data.</li>
+<li>Object to or restrict certain processing, and withdraw consent at any time.</li>
+<li>Complain to your local data protection authority.</li>
+</ul>
+<p>We do not sell or share personal information for cross-context behavioural advertising as defined by the CCPA. To make a request, contact us using the details below.</p>`,
+  },
+  {
+    title: 'International Transfers',
+    html: `<p>Our service providers may process data in the United States and other countries. Where required, these transfers are covered by appropriate safeguards such as standard contractual clauses.</p>`,
+  },
+  {
+    title: 'Security',
+    html: `<p>The site is served over HTTPS, and we use reputable providers that protect the data they process. No method of transmission over the internet is completely secure, so we cannot guarantee absolute security.</p>`,
+  },
+  {
+    title: 'Children’s Privacy',
+    html: `<p>This website is not directed to children under 13, and we do not knowingly collect personal information from them. If you believe a child has sent us personal information, please contact us and we will delete it.</p>`,
+  },
+  {
+    title: 'Changes to This Policy',
+    html: `<p>We may update this Privacy Policy from time to time. The new version will be posted on this page with an updated "Last updated" date.</p>`,
+  },
+  {
+    title: 'Contact Us',
+    html: `<p>If you have any questions about this Privacy Policy or want to exercise your rights, please reach us through our <a href="/contact-us/">Contact Us</a> page.</p>`,
+  },
+];
+
+const bodyClass =
+  'wp-singular page-template page-template-elementor_header_footer page page-id-2316 wp-embed-responsive wp-theme-hello-elementor hello-elementor-default elementor-default elementor-template-full-width elementor-kit-6 elementor-page elementor-page-2316';
 ---
-<BaseLayout seo={seo} schema={schema} bodyClass="wp-singular page-template page-template-elementor_header_footer page page-id-2316 wp-embed-responsive wp-theme-hello-elementor wp-schema-pro-2.11.4 hello-elementor-default elementor-default elementor-template-full-width elementor-kit-6 elementor-page elementor-page-2316 elementor-page-17">
-<div data-elementor-type="wp-page" data-elementor-id="2316" class="elementor elementor-2316">
-        <div class="elementor-element elementor-element-9b9703c e-flex e-con-boxed e-con e-parent">
-          <div class="e-con-inner">
-        <div class="elementor-element elementor-element-1225f00 elementor-widget elementor-widget-heading">
-          <h2 class="elementor-heading-title elementor-size-default">Privacy Policy</h2>        </div>
-          </div>
-        </div>
-    <div class="elementor-element elementor-element-2d17dde e-flex e-con-boxed e-con e-parent">
-          <div class="e-con-inner">
-    <div class="elementor-element elementor-element-4bea2a1 e-con-full e-flex e-con e-child">
-        <div class="elementor-element elementor-element-0c81afb elementor-widget elementor-widget-table-of-contents elementor-toc--sticky">
-                  <div class="elementor-toc__header">
-            <h4 class="elementor-toc__header-title">
-        Table of Contents      </h4>
-                </div>
-        <div id="elementor-toc__0c81afb" class="elementor-toc__body elementor-toc__list-items--collapsible"><ol class="elementor-toc__list-wrapper"><li class="elementor-toc__list-item"><div class="elementor-toc__list-item-text-wrapper"><a href="#elementor-toc__heading-anchor-0" class="elementor-toc__list-item-text elementor-toc__top-level">Information We Collect</a></div></li><li class="elementor-toc__list-item"><div class="elementor-toc__list-item-text-wrapper"><a href="#elementor-toc__heading-anchor-1" class="elementor-toc__list-item-text elementor-toc__top-level">How We Use Your Information</a></div></li><li class="elementor-toc__list-item"><div class="elementor-toc__list-item-text-wrapper"><a href="#elementor-toc__heading-anchor-2" class="elementor-toc__list-item-text elementor-toc__top-level">Sharing Your Information</a></div></li><li class="elementor-toc__list-item"><div class="elementor-toc__list-item-text-wrapper"><a href="#elementor-toc__heading-anchor-3" class="elementor-toc__list-item-text elementor-toc__top-level">Your Rights</a></div></li><li class="elementor-toc__list-item"><div class="elementor-toc__list-item-text-wrapper"><a href="#elementor-toc__heading-anchor-4" class="elementor-toc__list-item-text elementor-toc__top-level">Security</a></div></li><li class="elementor-toc__list-item"><div class="elementor-toc__list-item-text-wrapper"><a href="#elementor-toc__heading-anchor-5" class="elementor-toc__list-item-text elementor-toc__top-level">Children’s Privacy</a></div></li><li class="elementor-toc__list-item"><div class="elementor-toc__list-item-text-wrapper"><a href="#elementor-toc__heading-anchor-6" class="elementor-toc__list-item-text elementor-toc__top-level">Changes to This Policy</a></div></li><li class="elementor-toc__list-item"><div class="elementor-toc__list-item-text-wrapper"><a href="#elementor-toc__heading-anchor-7" class="elementor-toc__list-item-text elementor-toc__top-level">Contact Us</a></div></li></ol></div>
-            </div>
-        </div>
-    <div class="elementor-element elementor-element-7858efc e-con-full e-flex e-con e-child">
-        <div class="elementor-element elementor-element-3d9478d elementor-widget-tablet__width-inherit elementor-widget elementor-widget-text-editor">
-                  <span id="elementor-toc__heading-anchor-0" class="elementor-menu-anchor"></span><h3><strong><span style="color: #000000;">Information We Collect</span></strong></h3>
-We collect information to provide better services to all our users. This includes:
-Information you provide: Such as your name, email address, and any other data you voluntarily submit via forms or account creation.
-Information collected automatically: When you use our service, we automatically collect data such as IP address, browser type, device information, and usage statistics (via cookies and similar tracking technologies).
-<span id="elementor-toc__heading-anchor-1" class="elementor-menu-anchor"></span><h3><span style="color: #000000;"><strong>How We Use Your Information</strong></span></h3>
-We use the collected information for the following purposes:
-To operate, maintain, and improve our services.
-To communicate with you, including responding to your inquiries and sending updates.
-To monitor and analyze trends, usage, and activities in connection with our services.
-To comply with legal obligations.
-<span id="elementor-toc__heading-anchor-2" class="elementor-menu-anchor"></span><h3><span style="color: #000000;"><strong>Sharing Your Information</strong></span></h3>
-We do not sell your personal information. We may share your data only in the following limited circumstances:
-Service Providers: With third-party vendors who perform services on our behalf (e.g., hosting, analytics).
-Legal Requirements: If required by law or in response to valid requests by public authorities.
-Business Transfers: In the event of a merger, sale, or acquisition of company assets.
-<span id="elementor-toc__heading-anchor-3" class="elementor-menu-anchor"></span><h3><span style="color: #000000;"><strong>Your Rights</strong></span></h3>
-Depending on your location, you may have the right to:
-Access/Request: Obtain a copy of the personal data we hold about you.
-Correction: Request that we correct inaccurate information.
-Deletion: Request that we delete your personal data under certain conditions.
-<span id="elementor-toc__heading-anchor-4" class="elementor-menu-anchor"></span><h3><span style="color: #000000;"><strong>Security</strong></span></h3>
-We take reasonable measures to help protect information about you from loss, theft, misuse, and unauthorized access. However, no internet-based service is 100% secure.
-<span id="elementor-toc__heading-anchor-5" class="elementor-menu-anchor"></span><h3><span style="color: #000000;"><strong>Children’s Privacy</strong></span></h3>
-Our services are not directed to individuals under the age of 13. We do not knowingly collect personal information from children under 13.
-<span id="elementor-toc__heading-anchor-6" class="elementor-menu-anchor"></span><h3><span style="color: #000000;"><strong>Changes to This Policy</strong></span></h3>
-We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page.
-<span id="elementor-toc__heading-anchor-7" class="elementor-menu-anchor"></span><h3><span style="color: #000000;"><strong>Contact Us</strong></span></h3>
-If you have any questions about this Privacy Policy, please contact us at: [Insert Your Email Address Here]
-Important Next Steps
-Customize: Replace the bracketed information (like [Insert Your Email Address Here]) with your actual business details.
-Review Local Laws: Depending on your country or the country where your users live (e.g., California’s CCPA, the EU’s GDPR, or your local data protection laws), you may need specific legal clauses that are not included in this general template.
-Professional Counsel: If you are collecting sensitive data (health information, financial data, or children’s data), I strongly recommend having this document reviewed by a qualified legal professional to ensure full compliance with your specific jurisdiction.
-Would you like me to refine this document for a specific industry, such as an e-commerce store, a blog, or a mobile app?                </div>
-        </div>
-          </div>
-        </div>
-        </div>
+<BaseLayout seo={seo} schema={schema} bodyClass={bodyClass}>
+  <LegalPage
+    pageId={2316}
+    ids={{ hero: '9b9703c', heading: '1225f00', body: '2d17dde', tocCol: '4bea2a1', toc: '0c81afb', textCol: '7858efc', text: '3d9478d' }}
+    title="Privacy Policy"
+    updated={updated}
+    sections={sections}
+  />
 </BaseLayout>
