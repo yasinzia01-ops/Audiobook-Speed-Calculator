@@ -18,6 +18,14 @@
   scroll-margin-top: 20px;
 }
 
+/* Mega menu item dots. The header's custom CSS sets `svg * { fill: transparent !important }`,
+   which leaves only a hairline stroke, so the dots were invisible (also on the WordPress site).
+   Show them filled, as in the Elementor editor. */
+.elementor-14 .e-n-menu .e-n-menu-content .elementor-element .elementor-icon-list-item .elementor-icon-list-icon svg * {
+  fill: var(--e-global-color-aca82d1) !important;
+  stroke: none !important;
+}
+
 /* Header "Contact Us" button: same style as the site's primary button
    (e.g. "Open the Calculator" on the Speed Chart page). */
 .elementor-14 .header-cta {
